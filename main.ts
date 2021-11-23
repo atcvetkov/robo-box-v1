@@ -1,4 +1,7 @@
 let heading = input.compassHeading()
+let X = input.acceleration(Dimension.X)
+let Y = input.acceleration(Dimension.Y)
+let Z = input.acceleration(Dimension.Z)
 basic.forever(function () {
     serial.writeLine("x:" + input.acceleration(Dimension.X))
     serial.writeLine("y:" + input.acceleration(Dimension.Y))
