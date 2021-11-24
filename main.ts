@@ -1,3 +1,14 @@
+makerbit.onIrButton(IrButton.Ok, IrButtonAction.Pressed, function () {
+    if (alarm == 0) {
+        alarm = 1
+    } else {
+        alarm = 0
+    }
+    basic.showNumber(alarm)
+})
+let alarm = 0
+makerbit.connectIrReceiver(DigitalPin.P16, IrProtocol.Keyestudio)
+alarm = 0
 let heading = input.compassHeading()
 let X = input.acceleration(Dimension.X)
 let Y = input.acceleration(Dimension.Y)
@@ -10,8 +21,8 @@ basic.forever(function () {
     basic.pause(2000)
 })
 basic.forever(function () {
-    if (Math.abs(input.acceleration(Dimension.Z)) > 60) {
-        pins.analogWritePin(AnalogPin.P0, 429)
+    if (Math.abs(input.acceleration(Dimension.Z)) > 100 && alarm == 1) {
+        pins.analogWritePin(AnalogPin.P0, 1023)
         pins.digitalWritePin(DigitalPin.P1, 0)
         pins.digitalWritePin(DigitalPin.P2, 1)
     } else {
